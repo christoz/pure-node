@@ -52,4 +52,4 @@ try {
   throw e;
 }
 
-export { env };
+export { env, loadEnv };
