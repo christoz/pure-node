@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "node --watch src/index.ts"
+    "start": "APP_STAGE=prod node src/index.ts",
+    "watch": "APP_STAGE=dev node --watch src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@types/node": "^25.9.1"
+    "@types/node": "^25.9.1",
+    "zod": "^4.4.3"
   }
 }

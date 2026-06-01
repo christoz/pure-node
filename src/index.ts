@@ -1,6 +1,7 @@
+import { env } from "./config/.env.ts";
 import { app, router } from "./server.ts";
 
-const PORT = 3000;
+const PORT = env.PORT;
 const hostname = "localhost";
 
 router.get("/health", (_req, res) => {
@@ -11,6 +12,8 @@ router.get("/health", (_req, res) => {
       status: "OK",
       timestamp: new Date().toISOString(),
       service: "Habit Tracker API",
+      environment: env.APP_STAGE,
+      nodeEnv: env.NODE_ENV,
     }),
   );
 });
