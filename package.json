@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node --test --watch",
-    "start": "APP_STAGE=prod node src/index.ts",
-    "watch": "APP_STAGE=dev node --watch src/index.ts"
+    "start": "APP_ENV=prod node src/index.ts",
+    "watch": "APP_ENV=dev node --watch src/index.ts"
   },
   "keywords": [],
   "author": "",

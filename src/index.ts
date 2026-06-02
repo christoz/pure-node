@@ -1,4 +1,4 @@
-import { env } from "./config/.env.ts";
+import { env } from "./config/env.ts";
 import { app, router } from "./server.ts";
 
 const PORT = env.PORT;
@@ -12,7 +12,7 @@ router.get("/health", (_req, res) => {
       status: "OK",
       timestamp: new Date().toISOString(),
       service: "Habit Tracker API",
-      environment: env.APP_STAGE,
+      environment: env.APP_ENV,
       nodeEnv: env.NODE_ENV,
     }),
   );

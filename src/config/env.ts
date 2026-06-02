@@ -13,17 +13,7 @@ function loadEnv(env = "prod") {
 
 process.env.APP_ENV = process.env.APP_ENV || "dev";
 
-const isProd = process.env.APP_STAGE === "prod";
-const isQA = process.env.APP_STAGE === "qa";
-const isDev = process.env.APP_STAGE === "dev";
-
-if (isDev) {
-  loadEnv("dev");
-} else if (isQA) {
-  loadEnv("qa");
-} else if (isProd) {
-  loadEnv();
-}
+loadEnv(process.env.APP_ENV);
 
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
