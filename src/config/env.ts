@@ -42,4 +42,8 @@ try {
   throw e;
 }
 
+export const isProd = () => env.APP_ENV === "prod";
+export const isQA = () => env.APP_ENV === "qa";
+export const isDev = () => env.APP_ENV === "dev";
+
 export { env, loadEnv };

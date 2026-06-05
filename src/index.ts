@@ -4,7 +4,7 @@ import { app, router } from "./server.ts";
 const PORT = env.PORT;
 const hostname = "localhost";
 
-router.get("/health", (_req, res) => {
+router.get("/health/status", function healthStatusHandler(_req, res) {
   res.setHeader("Content-Type", "application/json");
   res.statusCode = 200;
   res.end(
@@ -18,6 +18,6 @@ router.get("/health", (_req, res) => {
   );
 });
 
-app.listen(PORT, hostname, () => {
+app.listen(PORT, hostname, function listeningListenter() {
   console.log(`listening on http://${hostname}:${PORT}`);
 });

@@ -3,7 +3,7 @@ import { createRouter } from "./router.ts";
 
 const router = createRouter();
 
-const app = createServer((req, res) => {
+const app = createServer(function requestListenter(req, res) {
   router.handle(req, res);
 });
 
