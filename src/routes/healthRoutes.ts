@@ -3,6 +3,17 @@ import { createRouter } from "../router.ts";
 
 const healthRouter = createRouter();
 
+healthRouter.get("/", function healthHandler(_req, res) {
+  res.setHeader("Content-Type", "application/json");
+  res.statusCode = 200;
+  res.end(
+    JSON.stringify({
+      status: "OK",
+      timestamp: new Date().toISOString(),
+    }),
+  );
+});
+
 healthRouter.get("/status", function healthStatusHandler(_req, res) {
   res.setHeader("Content-Type", "application/json");
   res.statusCode = 200;

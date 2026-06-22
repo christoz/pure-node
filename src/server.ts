@@ -1,15 +1,33 @@
-import { createServer } from "node:http";
+import { createServer, type Server } from "node:http";
 import { createRouter } from "./router.ts";
-import { authRouter, healthRouter, userRouter } from "./routes/index.ts";
+import { authRouter, habitsRouter, healthRouter } from "./routes/index.ts";
+
+interface App {
+  listen: (port: number, hostname: string, callback?: () => void) => Server;
+}
 
 const router = createRouter();
 
-router.use("/auth", authRouter);
-router.use("/health", healthRouter);
-router.use("/user", userRouter);
+router.use("/api/auth", authRouter);
+router.use("/api/health", healthRouter);
+router.use("/api/habits", habitsRouter);
 
-const app = createServer(function requestListenter(req, res) {
-  router.handle(req, res);
-});
+function createApp(): App {
+  const app: App = {
+    listen(port, hostname, callback) {
+      const server = createServer(function requestListenter(req, res) {
+        router.handle(req, res);
+      });
 
-export { app, router };
+      server.listen(port, hostname, callback);
+
+      return server;
+    },
+  };
+
+  return app;
+}
+
+const app = createApp();
+
+export { app };

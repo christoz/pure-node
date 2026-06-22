@@ -13,8 +13,10 @@ function createRouter() {
 
   function use(prefix: string, childRouter: ReturnType<typeof createRouter>) {
     for (const [key, route] of childRouter.routes) {
-      const [method, path] = key.split(":", 2);
-      const fullPath = prefix + path;
+      const colonIndex = key.indexOf(":");
+      const method = key.slice(0, colonIndex);
+      const path = key.slice(colonIndex + 1);
+      const fullPath = path === "/" ? prefix : prefix + path;
       const pattern = new URLPattern({ pathname: fullPath });
       routes.set(`${method}:${fullPath}`, { pattern, handler: route.handler });
     }
