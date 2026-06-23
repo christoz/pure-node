@@ -1,12 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
+import type { Params, RouteHandler } from "./types.ts";
 
-type Params = Record<string, string | undefined>;
-type Handler<P extends Params = Params> = (
-  req: IncomingMessage & { params: P },
-  res: ServerResponse,
-) => void;
-
-type Route = { handler: Handler; pattern: URLPattern };
+type Route = { handler: RouteHandler; pattern: URLPattern };
 
 function createRouter() {
   const routes = new Map<string, Route>();
@@ -22,14 +17,14 @@ function createRouter() {
     }
   }
 
-  function get<P extends Params>(path: string, handler: Handler<P>) {
+  function get<P extends Params>(path: string, handler: RouteHandler<P>) {
     const pattern = new URLPattern({ pathname: path });
-    routes.set(`GET:${path}`, { pattern, handler: handler as Handler });
+    routes.set(`GET:${path}`, { pattern, handler: handler as RouteHandler });
   }
 
-  function post<P extends Params>(path: string, handler: Handler<P>) {
+  function post<P extends Params>(path: string, handler: RouteHandler<P>) {
     const pattern = new URLPattern({ pathname: path });
-    routes.set(`POST:${path}`, { pattern, handler: handler as Handler });
+    routes.set(`POST:${path}`, { pattern, handler: handler as RouteHandler });
   }
 
   function handle(req: IncomingMessage, res: ServerResponse) {
