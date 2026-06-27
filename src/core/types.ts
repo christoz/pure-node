@@ -2,7 +2,7 @@ import type { IncomingMessage, ServerResponse } from "node:http";
 
 type Params = Record<string, string | undefined>;
 
-type NextFunction = () => void;
+type NextFunction = (err?: unknown) => void;
 
 type Handler = (req: IncomingMessage, res: ServerResponse) => void;
 

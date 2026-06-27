@@ -1,5 +1,5 @@
 import { env } from "../config/env.ts";
-import { createRouter } from "../router.ts";
+import { createRouter } from "../core/router.ts";
 
 const healthRouter = createRouter();
 

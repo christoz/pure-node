@@ -6,14 +6,23 @@
   "scripts": {
     "test": "node --test --watch",
     "start": "APP_ENV=prod node src/index.ts",
-    "watch": "APP_ENV=dev node --inspect --watch src/index.ts"
+    "watch": "APP_ENV=dev node --inspect --watch src/index.ts",
+    "check-types": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/node": "^25.9.1",
+    "typescript": "^6.0.3",
     "zod": "^4.4.3"
+  },
+  "dependencies": {
+    "@types/morgan": "^1.9.10",
+    "cors": "^2.8.6",
+    "helmet": "^8.2.0",
+    "morgan": "^1.11.0"
   }
 }

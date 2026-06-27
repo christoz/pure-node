@@ -9,12 +9,13 @@
     "moduleDetection": "force",
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "lib": ["es2022"],
+    "lib": ["es2022", "dom"],
     "module": "NodeNext",
     "outDir": "dist",
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
-    "strict": true
+    "strict": true,
+    "types": ["node"]
   },
   "include": ["src/**/*"]
 }

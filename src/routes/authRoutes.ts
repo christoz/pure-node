@@ -1,4 +1,4 @@
-import { createRouter } from "../router.ts";
+import { createRouter } from "../core/router.ts";
 
 const authRouter = createRouter();
 

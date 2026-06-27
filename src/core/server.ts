@@ -19,7 +19,12 @@ function createApp(): App {
       const server = createServer(function requestListener(req, res) {
         let i = 0;
 
-        function next() {
+        function next(err?: unknown) {
+          if (err) {
+            res.writeHead(403, { "content-type": "application/json" });
+            res.end(JSON.stringify({ error: err instanceof Error ? err.message : String(err) }));
+            return;
+          }
           const mw = middlewares[i++];
           if (mw) {
             mw(req, res, next);
@@ -27,6 +32,7 @@ function createApp(): App {
             router.handle(req, res);
           }
         }
+
 
         next();
       });
